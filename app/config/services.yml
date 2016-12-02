@@ -50,3 +50,6 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Dossier, label: Type de services }
 
+    app.provider.oauth:
+        class: AppBundle\Security\Core\User\OAuthUserProvider
+        arguments: [@fos_user.user_manager,{facebook: facebookID, google: googleID}]

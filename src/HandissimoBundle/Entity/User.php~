@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
@@ -13,6 +14,32 @@ class User extends BaseUser
      * @var integer
      */
     protected $id;
+
+    /**
+     * @var integer
+     */
+    protected $facebook_id;
+
+    /**
+     * @var integer
+     */
+    protected $google_id;
+
+    /**
+     * @return int
+     */
+    public function getFacebookId()
+    {
+        return $this->facebook_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGoogleId()
+    {
+        return $this->google_id;
+    }
 
     /**
      * Get id
