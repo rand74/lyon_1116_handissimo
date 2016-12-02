@@ -93,4 +93,3 @@ fos_user:
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
-
