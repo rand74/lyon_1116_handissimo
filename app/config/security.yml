@@ -30,8 +30,8 @@ security:
             anonymous:    true
 
             oauth:
-                failure_path: /
-                login_path: /
+                failure_path: /connect
+                login_path: /connect
                 check_path: /connect_check
                 provider: fos_userbundle
                 resource_owners:
