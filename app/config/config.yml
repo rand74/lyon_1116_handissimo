@@ -78,7 +78,8 @@ swiftmailer:
 hwi_oauth:
     firewall_names: [main]
     connect:
-        account_connector: app.provider.oauth
+        confirmation: true
+        account_connector: %app.provider.oauth%
     resource_owners:
         facebook:
             type:                facebook
@@ -97,6 +98,8 @@ hwi_oauth:
             scope:              "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
             paths:
                 email: email
+            options:
+                display: popup
 
 # FosUserBundle Configuration
 fos_user:

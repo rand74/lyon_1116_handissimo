@@ -10,12 +10,16 @@ namespace HandissimoBundle\Security\Core\User;
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserChecker;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 class OAuthUserProvider extends BaseClass
 {
+    /**
+     * @param UserResponseInterface $response
+     * @return \FOS\UserBundle\Model\UserInterface
+     */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
         $socialID = $response->getUsername();

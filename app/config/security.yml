@@ -28,8 +28,8 @@ security:
             anonymous:    true
 
             oauth:
-                failure_path: /connect
-                login_path: /connect
+                failure_path: /login
+                login_path: /login
                 check_path: /connect_check
                 provider: fos_userbundle
                 resource_owners:
@@ -37,6 +37,10 @@ security:
                     google: "/login/check-google"
                 oauth_user_provider:
                     service: app.provider.oauth
+
+        login:
+            pattern:  ^/login$
+            security: false
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

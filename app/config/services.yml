@@ -1,7 +1,7 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
-#    parameter_name: value
+    app_provider_oauth.class: HandissimoBundle\Security\Core\User\OAuthUserProvider
 
 services:
 #    service_name:
@@ -51,5 +51,5 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Dossier, label: Type de services }
 
     app.provider.oauth:
-        class: HandissimoBundle\Security\Core\User\OAuthUserProvider
+        class: "%app_provider_oauth.class%"
         arguments: [@fos_user.user_manager,{facebook: facebookID, google: googleID}]

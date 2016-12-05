@@ -2,5 +2,11 @@
 
 {% block fos_user_content %}
     {{ include('FOSUserBundle:Security:login_content.html.twig') }}
+    <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
+        <span>Facebook</span>
+    </a>
+    <a href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}">
+        <span>Google</span>
+    </a>
     <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
 {% endblock fos_user_content %}
