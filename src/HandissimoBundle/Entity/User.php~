@@ -16,29 +16,34 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var integer
+     * @var string
      */
-    protected $facebook_id;
+    private $facebookID;
 
     /**
-     * @var integer
+     * @var string
      */
-    protected $google_id;
+    private $googleID;
+
+    /**
+     * @var string
+     */
+    private $facebookAccessToken;
 
     /**
      * @return int
      */
-    public function getFacebookId()
+    public function getFacebookID()
     {
-        return $this->facebook_id;
+        return $this->facebookID;
     }
 
     /**
      * @return int
      */
-    public function getGoogleId()
+    public function getGoogleID()
     {
-        return $this->google_id;
+        return $this->googleID;
     }
 
     /**
@@ -49,5 +54,33 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param string $facebookId
+     *
+     * @return User
+     */
+    public function setFacebookID($facebookID)
+    {
+        $this->facebookID = $facebookID;
+
+        return $this;
+    }
+
+    /**
+     * Set googleId
+     *
+     * @param string $googleId
+     *
+     * @return User
+     */
+    public function setGoogleID($googleID)
+    {
+        $this->googleID = $googleID;
+
+        return $this;
     }
 }

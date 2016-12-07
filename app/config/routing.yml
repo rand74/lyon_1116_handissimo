@@ -22,14 +22,14 @@ hwi_oauth_connect:
 
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix:   /login
 
 facebook_login:
     pattern: /connect/check-facebook
 
 google_login:
-    pattern: /connect/check-google
+    pattern: /login/check-google
 
 #FosUser Routings
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+

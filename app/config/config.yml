@@ -64,33 +64,10 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts: [admin]
 
-# Swiftmailer Configuration
-swiftmailer:
-    auth_mode: login
-    encryption: ssl
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
-
 # Oauth Configuration
 hwi_oauth:
     firewall_names: [main]
-    connect:
-        confirmation: true
-        account_connector: %app.provider.oauth%
     resource_owners:
-        facebook:
-            type:                facebook
-            client_id:           %oauth.facebook.id%
-            client_secret:       %oauth.facebook.secret%
-            scope:               "email, public_profile"
-            infos_url:           "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)"
-            paths:
-                email: email
-            options:
-                display: page
         google:
             type:                google
             client_id:           %oauth.google.id%
@@ -100,6 +77,36 @@ hwi_oauth:
                 email: email
             options:
                 display: popup
+
+        facebook:
+            type:                facebook
+            client_id:           %oauth.facebook.id%
+            client_secret:       %oauth.facebook.secret%
+            scope:               "email, public_profile"
+            infos_url:           "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)"
+            paths:
+                email: email
+            options:
+                display: popup
+                auth_type: rerequest
+
+    fosub:
+        username_iterations: 30
+
+        # mapping between resource owners (see below) and properties
+        properties:
+            google: googleID
+            facebook: facebookID
+
+# Swiftmailer Configuration
+swiftmailer:
+    auth_mode: login
+    encryption: ssl
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
 
 # FosUserBundle Configuration
 fos_user:

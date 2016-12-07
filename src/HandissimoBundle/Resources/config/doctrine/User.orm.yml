@@ -8,11 +8,14 @@ HandissimoBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
-        facebook_id:
-          type: string
-          length: 255
-          nullable: true
-        google_id:
+        facebookID:
             type: string
             length: 255
             nullable: true
+        googleID:
+            type: string
+            length: 255
+            nullable: true
+        facebookAccessToken:
+            type: string
+            length: 255

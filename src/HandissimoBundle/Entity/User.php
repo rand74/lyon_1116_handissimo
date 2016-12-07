@@ -16,14 +16,19 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var integer
+     * @var string
      */
     private $facebookID;
 
     /**
-     * @var integer
+     * @var string
      */
     private $googleID;
+
+    /**
+     * @var string
+     */
+    private $facebookAccessToken;
 
     /**
      * @return int
@@ -77,5 +82,29 @@ class User extends BaseUser
         $this->googleID = $googleID;
 
         return $this;
+    }
+
+    /**
+     * Set facebookAccessToken
+     *
+     * @param string $facebookAccessToken
+     *
+     * @return User
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebookAccessToken = $facebookAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookAccessToken
+     *
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebookAccessToken;
     }
 }
