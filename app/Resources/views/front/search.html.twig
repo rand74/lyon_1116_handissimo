@@ -38,17 +38,17 @@
                     {}{ form_row(form.disabilitytypes) }#}
                     {% for results in result %}
                         {% for disabilityType in results.disabilityTypes %}
-                            <div id="disabilityselect">{{ disabilityType.disabilityName }}</div>
+                            <select id="disabilityselect"><option>{{ disabilityType.disabilityName }}</option></select>
                         {% endfor %}
                     {% endfor %}
                     {#{ form_row(form.structurestypes) }#}
                     {% for results in result %}
-                        <div id="structureselect">{{ results.structuretype }}</div>
+                        <select id="structureselect"><option>{{ results.structuretype }}</option></select>
                     {% endfor %}
                     {#{ form_row(form.needs) }#}
                     {% for results in result %}
                         {% for need in results.needs %}
-                            <div id="needselect">{{ need.needName }}</div>
+                            <select id="needselect"><option>{{ need.needName }}</option></select>
                         {% endfor %}
                     {% endfor %}
                     {#}{ form_row(form.save) }}
