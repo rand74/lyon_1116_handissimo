@@ -4,6 +4,7 @@ primary_search:
     methods:    [GET, POST]
 
 search_advanced:
-    path:   /advanced
+    path:   /advanced/{disabilitytypes}/{structurestypes}/{needs}
     defaults:   { _controller: "HandissimoBundle:Ajax:researchAdvanced"}
     methods:    [GET, POST]
+

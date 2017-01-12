@@ -100,7 +100,7 @@ class AjaxController extends Controller
         }
     }
 
-    public function researchAdvancedAction(Request $request)
+    /*public function researchAdvancedAction(Request $request)
     {
         $form = $this->createForm('HandissimoBundle\Form\SearchType');
         $form->handleRequest($request);
@@ -121,5 +121,20 @@ class AjaxController extends Controller
         return $this->render('front/search.html.twig', array(
             'form' => $form->createView()
         ));
+    }*/
+
+    public function researchAdvancedAction(Request $request, $disabilitytypes, $structurestypes, $needs)
+    {
+        if ($request->isXmlHttpRequest()) {
+            /**
+             * @var $repository OrganizationsRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $data = $repository->getBySearchAdvanced($disabilitytypes, $structurestypes, $needs);
+            return new JsonResponse(array("data" => json_encode($data)));
+        }else{
+            throw new HttpException('500', 'Raté!!');
+
+        }
     }
 }

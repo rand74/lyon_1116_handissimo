@@ -33,26 +33,28 @@
             <div class="col-md-4">
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Filtres &nbsp;+</button>
                 <div id="filters" class="collapse">
-                    {#{ form_start(form) }}
-                    {{ form_errors(form) }}
-                    {}{ form_row(form.disabilitytypes) }#}
-                    {% for results in result %}
-                        {% for disabilityType in results.disabilityTypes %}
-                            <select id="disabilityselect"><option>{{ disabilityType.disabilityName }}</option></select>
+                    <select class="select" id="disabilityselect">
+                        <option value="0">Sélectionner un type de maladie
+                        {% for results in result %}
+                            {% for disabilityType in results.disabilityTypes %}
+                                <option id="disabilitytypes">{{ disabilityType.disabilityName }}</option>
+                            {% endfor %}
                         {% endfor %}
-                    {% endfor %}
-                    {#{ form_row(form.structurestypes) }#}
-                    {% for results in result %}
-                        <select id="structureselect"><option>{{ results.structuretype }}</option></select>
-                    {% endfor %}
-                    {#{ form_row(form.needs) }#}
-                    {% for results in result %}
-                        {% for need in results.needs %}
-                            <select id="needselect"><option>{{ need.needName }}</option></select>
+                    </select>
+                    <select class="select" id="structureselect">
+                        <option value = "0">Sélectionner un type de structure
+                        {% for results in result %}
+                            <option id="structurestypes">{{ results.structuretype }}</option>
                         {% endfor %}
-                    {% endfor %}
-                    {#}{ form_row(form.save) }}
-                    {{ form_end(form) }#}
+                    </select>
+                    <select class="select" id="needselect">
+                        <option value = "0">Sélectionner un type de besoin
+                        {% for results in result %}
+                            {% for need in results.needs %}
+                                <option id="needs">{{ need.needName }}</option>
+                            {% endfor %}
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
         </div>
@@ -91,6 +93,7 @@
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>
+    <script type="text/javascript" src="{{ asset ('js/test.js')}}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>
