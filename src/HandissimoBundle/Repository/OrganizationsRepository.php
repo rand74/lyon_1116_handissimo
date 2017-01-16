@@ -101,23 +101,21 @@ class OrganizationsRepository extends EntityRepository
     public function getBySearchAdvanced($disabilitytypes, $structurestypes, $needs)
     {
         $query = $this->createQueryBuilder('o');
-        //$query->addSelect('o');
-        //$query->from('HandissimoBundle:Organizations', 'o');
         $query->innerJoin('o.needs', 'n');
         $query->innerJoin('o.disabilityTypes', 'dt');
         $query->innerJoin('o.structuretype', 'st');
 
-        if ($disabilitytypes !== null) {
+        if ($disabilitytypes !== null && $structurestypes == null && $needs == null) {
             $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
             $query->setParameter('disabilityTypesdata', $disabilitytypes);
         }
 
-        if ($structurestypes !== null) {
+        if ($structurestypes !== null && $disabilitytypes == null && $needs == null) {
             $query->andWhere('st.structurestype = :structuretypedata');
             $query->setParameter('structuretypedata', $structurestypes);
         }
 
-        if ($needs !== null) {
+        if ($needs !== null && $structurestypes == null && $disabilitytypes == null) {
             $query->where('n.needName = :needsdata');
             $query->setParameter('needsdata', $needs);
         }

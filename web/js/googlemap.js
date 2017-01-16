@@ -6,11 +6,11 @@ function initMap() {
         center: uluru
     });
 
-    var coordinate =  document.getElementsByTagName('input');
-
+    var coordinate =  document.getElementsByClassName('arrayjson');
+    console.log(coordinate);
     for(var i = 0; i < coordinate.length; i++) {
         (function(index){
-            var elements =  JSON.parse(coordinate[i].value);
+            var elements = JSON.parse(coordinate[i].value);
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
@@ -28,7 +28,7 @@ function initMap() {
                 content: contentString,
                 maxWidth: 200
             });
-            var localisation = {lat: elements.latitude, lng: elements.longitude}
+            var localisation = {lat: elements.latitude, lng: elements.longitude};
             var marker = new google.maps.Marker({
 
                 position: localisation,

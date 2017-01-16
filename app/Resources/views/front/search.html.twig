@@ -37,21 +37,27 @@
                         <option value="0">Sélectionner un type de maladie
                         {% for results in result %}
                             {% for disabilityType in results.disabilityTypes %}
-                                <option id="disabilitytypes">{{ disabilityType.disabilityName }}</option>
+                                {% if loop.first %}
+                                    <option id="disabilitytypes">{{ disabilityType.disabilityName }}</option>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
                     </select>
                     <select class="select" id="structureselect">
                         <option value = "0">Sélectionner un type de structure
                         {% for results in result %}
-                            <option id="structurestypes">{{ results.structuretype }}</option>
+                            {% if loop.first %}
+                                <option id="structurestypes">{{ results.structuretype }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <select class="select" id="needselect">
                         <option value = "0">Sélectionner un type de besoin
                         {% for results in result %}
                             {% for need in results.needs %}
-                                <option id="needs">{{ need.needName }}</option>
+                                {% if loop.first %}
+                                    <option id="needs">{{ need.needName }}</option>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
                     </select>
@@ -64,7 +70,7 @@
             <div class="col-xs-12 col-md-6">
                 <div id="map"></div>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-6" id="ahhh">
                 <ul>
                     {% for results in result %}
                         <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
@@ -93,7 +99,7 @@
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>
-    <script type="text/javascript" src="{{ asset ('js/test.js')}}"></script>
+    <script type="text/javascript" src="{{ asset ('js/researchAdvanced.js')}}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>

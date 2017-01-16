@@ -126,6 +126,7 @@ class AjaxController extends Controller
     public function researchAdvancedAction(Request $request, $disabilitytypes, $structurestypes, $needs)
     {
         if ($request->isXmlHttpRequest()) {
+            //$results = $request->get('tt');
             /**
              * @var $repository OrganizationsRepository
              */
@@ -134,7 +135,6 @@ class AjaxController extends Controller
             return new JsonResponse(array("data" => json_encode($data)));
         }else{
             throw new HttpException('500', 'Raté!!');
-
         }
     }
 }
