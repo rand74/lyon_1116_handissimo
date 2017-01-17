@@ -92,6 +92,7 @@ class AjaxController extends Controller
          * @var $repository OrganizationsRepository
          */
         if ($request->isXmlHttpRequest()) {
+
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
             $data = $repository->getByCity($postalcode);
             return new JsonResponse(array("data" => json_encode($data)));
@@ -125,8 +126,11 @@ class AjaxController extends Controller
 
     public function researchAdvancedAction(Request $request, $disabilitytypes, $structurestypes, $needs)
     {
+        /*$this->forward('HandissimoBundle:Ajax:research', array(
+            'result' => $result,
+        ));*/
+
         if ($request->isXmlHttpRequest()) {
-            //$results = $request->get('tt');
             /**
              * @var $repository OrganizationsRepository
              */

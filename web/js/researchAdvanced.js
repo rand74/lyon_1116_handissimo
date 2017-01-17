@@ -3,20 +3,17 @@ $(document).ready(function () {
         var disabilitytypes = $('#disabilityselect').val();
         var structurestypes = $('#structureselect').val();
         var needs = $('#needselect').val();
-        var tt = $('.arrayjson').val();
-        console.log(tt);
+        var idsearch = $('.iddata').data("searchid");
+        //console.log(tt);
             $.ajax({
                 type: "POST",
-                //data: 'select:selectedValues',
-                url: "advanced/" + disabilitytypes + "/" + structurestypes + "/" + needs + "/" +tt,
+                url: "advanced/" + disabilitytypes + "/" + structurestypes + "/" + needs + "/" +idsearch,
+                //url:search_advanced,
                 dataType: 'json',
                 timeout: 3000,
                 success: function (response) {
                     //$('#ahhh').html(response);
-                    /*$.each(response, function (index, value) {
-                        $('#structureselect').append('<option value="' + index + '">' + value + '</option>');
-                        $('#needselect').append('<option value="' + index + '">' + value + '</option>')
-                    })*/
+
                 },
                 error: function () {
                     alert('Ajax call error');

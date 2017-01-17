@@ -70,10 +70,12 @@
             <div class="col-xs-12 col-md-6">
                 <div id="map"></div>
             </div>
-            <div class="col-xs-12 col-md-6" id="ahhh">
+            <div class="col-xs-12 col-md-6">
                 <ul>
                     {% for results in result %}
-                        <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
+                        {#<input class="hidden" id="search" value=" {{ results.id }}"/>#}
+                        <div class="iddata" data-searchid={{ results.id }}></div>
+                        <li class=>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
 
                         {% set array = {
                             'name': results.name,

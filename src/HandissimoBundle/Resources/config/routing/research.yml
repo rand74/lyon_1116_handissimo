@@ -14,7 +14,7 @@ research_action:
     methods:  [GET, POST]
 
 search_advanced:
-    path:   /advanced/{disabilitytypes}/{structurestypes}/{needs}/{tt}
+    path:   /advanced/{disabilitytypes}/{structurestypes}/{needs}/{idsearch}
     defaults:   { _controller: "HandissimoBundle:Ajax:researchAdvanced"}
     methods:    [GET, POST]
 
