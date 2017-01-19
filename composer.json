@@ -27,7 +27,10 @@
         "sonata-project/core-bundle": "^3.1",
         "sonata-project/easy-extends-bundle": "^2.1",
         "sonata-project/user-bundle": "^3.2",
-        "sonata-project/formatter-bundle": "^3.1"
+        "sonata-project/formatter-bundle": "^3.1",
+        "sonata-project/intl-bundle": "^2.3",
+        "sonata-project/classification-bundle": "^3.2",
+        "sonata-project/media-bundle": "^3.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
