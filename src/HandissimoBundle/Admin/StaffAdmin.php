@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Admin;
 
 
+use Doctrine\DBAL\Types\TextType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -15,7 +16,7 @@ class StaffAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('jobs', 'text',
+            ->add('jobs', TextType::class,
                 array(
                     'label' => 'Métiers',
                     'required' => false

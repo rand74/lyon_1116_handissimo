@@ -2,6 +2,8 @@
 
 namespace HandissimoBundle\Admin;
 
+use Doctrine\DBAL\Types\IntegerType;
+use Doctrine\DBAL\Types\TextType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -21,55 +23,55 @@ class OrganizationsAdmin extends Admin
                 'choice_label' => 'society_name',
                 'label' => 'Organisme gestionnaire'
             ))
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'label' => 'Nom de l\'organisation',
                 'required' => true
             ))
-            ->add('address', 'text', array(
+            ->add('address', TextType::class, array(
                 'label' => 'Adresse postale',
                 'required' => true
             ))
-            ->add('postal', 'text', array(
+            ->add('postal', TextType::class, array(
                 'label' => 'Code postal',
                 'required' => true,
             ))
-            ->add('city', 'text', array(
+            ->add('city', TextType::class, array(
                 'label' => 'Ville',
                 'required' => true
             ))
-            ->add('phone_number', 'text', array(
+            ->add('phone_number', TextType::class, array(
                 'label' => 'Téléphone',
                 'required' => true
             ))
-            ->add('mail', 'text', array(
+            ->add('mail', TextType::class, array(
                 'label' => 'E-mail de contact',
                 'required' => true
             ))
-            ->add('website', 'text', array(
+            ->add('website', TextType::class, array(
                 'label' => 'Site internet',
                 'required' => false
             ))
-            ->add('blog', 'text', array(
+            ->add('blog', TextType::class, array(
                 'label' => 'Blog',
                 'required' => false
             ))
-            ->add('facebook', 'text', array(
+            ->add('facebook', TextType::class, array(
                 'label' => 'Facebook',
                 'required' => false
             ))
-            ->add('twitter', 'text', array(
+            ->add('twitter', TextType::class, array(
                 'label' => 'Twitter',
                 'required' => false
             ))
-            ->add('agemini', 'integer', array(
+            ->add('agemini', IntegerType::class, array(
                 'label' => 'Âge minimum',
                 'required' => false
             ))
-            ->add('agemaxi', 'integer', array(
+            ->add('agemaxi', IntegerType::class, array(
                 'label' => 'Âge maximum',
                 'required' => false
             ))
-            ->add('freeplace', 'text', array(
+            ->add('freeplace', IntegerType::class, array(
                 'label' => 'Nombre de places disponibles',
                 'required' => false
             ))
@@ -81,7 +83,7 @@ class OrganizationsAdmin extends Admin
                 'label' => 'Description des services',
                 'required' => false
             ))
-            ->add('openhours', 'text', array(
+            ->add('openhours', TextType::class, array(
                 'label' => 'Heures d\'ouverture',
                 'required' => false
             ))
@@ -89,7 +91,7 @@ class OrganizationsAdmin extends Admin
                 'label' => 'Jours d\'ouverture',
                 'required' => false
             ))
-            ->add('team_members_number', 'text', array(
+            ->add('team_members_number', TextType::class, array(
                 'label' => 'Nombre de membres du personnel',
                 'required' => false
             ))

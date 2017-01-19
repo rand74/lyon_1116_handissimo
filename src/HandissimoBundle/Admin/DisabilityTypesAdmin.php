@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Admin;
 
 
+use Doctrine\DBAL\Types\TextType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -14,7 +15,7 @@ class DisabilityTypesAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('disabilityName', 'text',
+            ->add('disabilityName', TextType::class,
                 array(
                     'label' => 'Types de handicaps',
                     'required' => false

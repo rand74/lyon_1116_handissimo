@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Admin;
 
+use Doctrine\DBAL\Types\TextType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -13,7 +14,7 @@ class StructuresTypesAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('structurestype', 'text', array(
+            ->add('structurestype', TextType::class, array(
                 'label' => 'Types de structures',
                 'required' => false
             ))
@@ -25,7 +26,7 @@ class StructuresTypesAdmin extends Admin
                 'by_reference' => true,
                 'disabled' => true
             ))
-            ->add('logo_mdph', 'text', array(
+            ->add('logo_mdph', TextType::class, array(
                 'label' => 'Logo MDPH',
                 'required' => false
             ));

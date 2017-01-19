@@ -13,7 +13,6 @@ class Organizations
 
     }
 
-    // GENERATE CODE
     /**
      * @var integer
      */
@@ -70,7 +69,7 @@ class Organizations
     private $twitter;
 
     /**
-     * @var string
+     * @var integer
      */
     private $freeplace;
 
