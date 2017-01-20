@@ -2,14 +2,12 @@
 
 namespace HandissimoBundle\Admin;
 
-use Doctrine\DBAL\Types\IntegerType;
-use Doctrine\DBAL\Types\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
@@ -28,7 +26,7 @@ class OrganizationsAdmin extends Admin
                 'required' => true
             ))
             ->add('address', TextType::class, array(
-                'label' => 'Adresse postale',
+                'label' => 'N° et voie',
                 'required' => true
             ))
             ->add('postal', TextType::class, array(
