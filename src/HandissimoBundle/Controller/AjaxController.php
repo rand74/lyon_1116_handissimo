@@ -19,19 +19,18 @@ class AjaxController extends Controller
 {
     public function researchAction(Request $request)
     {
-        $form = $this->createForm('HandissimoBundle\Form\ResearchType');
-        $form->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
 
-        $formAdvancedResearch = $this->createForm(AdvancedSearchType::class/*, $searchAdvanced, array('organizationsRepository' => ($em->getRepository('HandissimoBundle:Organizations')))  */);
-        $formAdvancedResearch->handleRequest($request);
+        $step1SearchForm = $this->createForm('HandissimoBundle\Form\ResearchType');
+        $step1SearchForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        $step2SearchForm = $this->createForm(AdvancedSearchType::class/*, $searchAdvanced, array('organizationsRepository' => ($em->getRepository('HandissimoBundle:Organizations')))  */);
+        $step2SearchForm->handleRequest($request);
 
+        if ($step1SearchForm->isSubmitted() && $step1SearchForm->isValid()){
 
-            $data = $form->getData();
-            $age = $form->getData()['age'];
+            $data = $step1SearchForm->getData();
+            $age = $step1SearchForm->getData()['age'];
 
             /**
              * @var $repository OrganizationsRepository
@@ -41,13 +40,25 @@ class AjaxController extends Controller
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,
-                'form' => $formAdvancedResearch->createView(),
+                'form' => $step2SearchForm->createView(),
             ));
 
-        } elseif ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
+        } elseif ($step2SearchForm->isSubmitted() && $step2SearchForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $data = $formAdvancedResearch->getData();
-            $age = $formAdvancedResearch->getData()['age'];
+            $data = $step2SearchForm->getData();
+            $age = $data['age'];
+            $disabilityChoice = "";
+            $needChoice = "";
+            $structureChoice = "";
+            if (!is_null($data['disabilitytypes'])) {
+                $disabilityChoice = $data['disabilitytypes']->getDisabilityName();
+            }
+            if (!is_null($data['needs'])) {
+                $needChoice = $data['needs']->getNeedName();
+            }
+            if (!is_null($data['structurestypes'])) {
+                $structureChoice = $data['structurestypes']->getStructuresType();
+            }
 
             /**
              * @var $repository OrganizationsRepository
@@ -57,29 +68,12 @@ class AjaxController extends Controller
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,
-                'form' => $formAdvancedResearch->createView(),
+                'form' => $step2SearchForm->createView(),
             ));
         }
         return $this->render('front/research.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $step1SearchForm->createView(),
         ));
-    }
-
-    public function advancedResearchAction(Request $request, $data, $age)
-    {
-        if ($request->isXmlHttpRequest())
-        {
-            /**
-             * @var $repository OrganizationsRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('handissimoBundle:Organization');
-            $results = $repository->getByOrganizationName($data, $age);
-
-            return new JsonResponse(array("results" => json_encode($results)));
-        } else {
-            throw new HttpException("500", "Invalid Call");
-        }
-
     }
 
     public function autoCompleteAction(Request $request, $keyword)
