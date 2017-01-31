@@ -115,12 +115,8 @@ sonata_admin:
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
 
-
-
-
-
     security:
-        handler: sonata.admin.security.handler.role
+        handler: sonata.admin.security.handler.noop
 
 sonata_user:
     security_acl: false

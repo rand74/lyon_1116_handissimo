@@ -12,3 +12,11 @@ research_action:
     path:     /
     defaults: { _controller: "HandissimoBundle:Ajax:research" }
     methods:  [GET, POST]
+
+advanced_research_action:
+    path:     /research/{pagination}/
+    defaults: { _controller: "HandissimoBundle:Ajax:advancedResearch" }
+    methods:  [GET, POST]
+
+
+

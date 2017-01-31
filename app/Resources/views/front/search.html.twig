@@ -61,7 +61,14 @@
                 <div class="row">
                     <h4 id="count-results">{{ pagination.getTotalItemCount }} résultat(s)</h4>
                 </div>
+                {% for result1 in result %}
+
+                    {% for result in result1 %}
+                        {{ dump(result.disabilityTypes) }}
+                    {% endfor %}
+                {% endfor %}
                 {% for results in pagination %}
+
                 <div class="row" id="result-container">
                     <div class="col-sm-4">
                         <a href="{{ path('handissimo_organizations_standard_page', {'id': results.id}) }}">
@@ -98,6 +105,7 @@
                         'longitude': results.longitude,
                         }
                     %}
+
 
                     {% set arrayjson = array|json_encode %}
                     <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
