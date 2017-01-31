@@ -21,7 +21,12 @@
 }
 
 .form-container {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
+}
+@media screen and (max-width: 980px) {
+    .form-container {
+        padding-bottom: 0;
+    }
 }
 
 .panel-custom {
@@ -97,6 +102,10 @@
 #sonata_user_profile_form_phone:focus,
 #sonata_user_profile_form_website:focus {
     border-bottom: solid 1px #777777;
+}
+
+#sonata_user_profile_form_locale {
+    width: 100%;
 }
 
 #sonata_user_profile_form_biography {
