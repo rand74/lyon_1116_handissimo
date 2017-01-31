@@ -1,0 +1,7 @@
+<form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST" class="form-horizontal">
+    <div class="col-xs-10 col-xs-offset-1">
+        {{ form_widget(form) }}
+
+        <button type="submit" name="submit" class="btn btn-primary pull-right orange-btn">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+    </div>
+</form>

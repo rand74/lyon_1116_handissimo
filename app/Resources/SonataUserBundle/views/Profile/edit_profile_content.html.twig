@@ -1,0 +1,17 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/editProfile.css') }}">
+{% endblock %}
+
+<form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal" id="profile-form">
+        {{ form_row(form.gender)}}
+        {{ form_row(form.firstname)}}
+        {{ form_row(form.lastname)}}
+        {{ form_row(form.locale)}}
+        {{ form_row(form.phone)}}
+        {{ form_row(form.website)}}
+        {{ form_row(form.biography)}}
+
+    <div class="form-actions">
+        <button type="submit" name="submit"  class="btn btn-primary pull-right blue-btn">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+    </div>
+</form>
