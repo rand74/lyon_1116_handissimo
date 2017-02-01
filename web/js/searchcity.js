@@ -4,14 +4,18 @@ $( document ).ready(function() {
         if ( postalcode.length >= 2 ) {
             $.ajax({
                 type: "POST",
-                url: "/research/ajaxcity/" + postalcode,
+                url: "/ajaxcity/" + postalcode,
                 dataType: 'json',
                 timeout: 3000,
                 success: function(response){
                     var postalcodes = JSON.parse(response.data);
-                    var html = "";
+                    html = "";
                     for (var i = 0; i < postalcodes.length; i++) {
-                        html += "<li>" + postalcodes[i].postal + "</li>";
+                        //if (postalcode = postalcodes[i].postal) {
+                            html += "<li>" + postalcodes[i].postal + "</li>";
+                        //}else if(postalcode = postalcodes[i].city) {
+                          //  html += "<li>" + postalcodes[i].city + "</li>";
+                       // }
                     }
 
                     $('#city').html(html);

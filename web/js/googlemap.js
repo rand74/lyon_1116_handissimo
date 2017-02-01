@@ -2,15 +2,25 @@
 function initMap() {
     var uluru = {lat: 45.764043, lng: 4.835658999999964};
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
+        zoom: 6,
         center: uluru
     });
 
-    var coordinate =  document.getElementsByTagName('input');
+    //Resize Function
+    google.maps.event.addDomListener(window, "resize", function() {
+        var center = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+    });
+    var zoomChangeBoundsListener = google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+        map.setZoom( Math.min( 11, map.getZoom() ) );
+    });
+    var bounds = new google.maps.LatLngBounds();
 
+    var coordinate =  document.getElementsByClassName('arrayjson');
     for(var i = 0; i < coordinate.length; i++) {
         (function(index){
-            var elements =  JSON.parse(coordinate[i].value);
+            var elements = JSON.parse( coordinate[i].value );
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
@@ -35,10 +45,13 @@ function initMap() {
                 map: map,
                 title: elements.name
             });
+            bounds.extend(localisation);
+
             marker.addListener( 'click', function () {
                 infoWindow.open(map, marker);
             });
+
         })(i);
     }
-
+    map.fitBounds(bounds);
 }
