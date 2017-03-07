@@ -2,15 +2,16 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@HandissimoBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -35,6 +36,44 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+    #Sonata with Symfony >= 2.6
+    form_themes:
+        - 'SonataFormatterBundle:Form:formatter.html.twig'
+
+sonata_formatter:
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig #keep this commented unless you are using media bundle.
+
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: [] # Twig formatter cannot have extensions
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -45,6 +84,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -57,10 +98,83 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+# Sonata Configuration
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+        sonata.block.service.text: # used to if you plan to use Sonata user routes
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+
+sonata_admin:
+    templates:
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+
+
+
+
+
+    security:
+        handler: sonata.admin.security.handler.role
+
+sonata_user:
+    security_acl: false
+    manager_type: orm
+    profile:
+    admin:
+
 # Swiftmailer Configuration
 swiftmailer:
+    auth_mode: login
+    encryption: ssl
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FosUserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class:    Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+        user_manager: sonata.user.orm.user_manager
+
+    from_email:
+        address: dev.wildcodeshool@gmail.com
+        sender_name: Handissimo
+
+    registration:
+        confirmation:
+            enabled: true
+            template: FOSUserBundle:Registration:email.txt.twig
+
+ivory_ck_editor:
+    default_config: my_custom_config
+    configs:
+        my_custom_config:
+            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Image','Table','HorizontalRule' ], [ 'Format','FontSize' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
+            height: '200px'
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig      # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig # sort link template

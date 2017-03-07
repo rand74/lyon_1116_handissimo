@@ -1,0 +1,240 @@
+/*img head*/
+.head-title {
+    align-items: center;
+    display: flex;
+}
+
+.head-img {
+    width: 100%;
+    height: 400px;
+    background-image: url(../images/head-organization.jpg);
+    background-size: cover;
+    background-position: top center;
+}
+/*container info block*/
+.container-info{
+    padding-top:10px;
+}
+
+/*head title*/
+.update{
+    color:#777777;
+    margin-top:10px;
+    font-size: 1.1em;
+    padding-left: 15px;
+}
+.organization-logo{
+    width: 55px;
+}
+/*------------------- this is for the favorite/like button --------------*/
+.fa-heart-o{
+    font-size: 30px;
+    height:30px;
+}
+.like{
+    float: right;
+    margin:0;
+}
+/*-----------------------------*/
+.img-block{
+    margin-left: 20px;
+}
+
+.head-block{
+    margin:0 10px 5px 10px;
+    padding:20px;
+}
+.img-block, .like{
+    display: flex;
+    justify-content: flex-end;
+}
+/*Carousel*/
+.carousel,
+.carousel ul,
+.carousel ul li,
+.line-img {
+    margin: 0;
+}
+
+.carousel {
+    margin: 10px 0;
+    height: 300px;
+    overflow: hidden;
+}
+
+.carousel ul{
+    list-style: none;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.carousel ul li {
+    width: 600px;
+    height: 300px;
+    margin-right: 10px;
+}
+
+.line-img{
+    max-width: 600px;
+    max-height:300px;
+}
+
+.carousel-image {
+    width: auto;
+    height: 100%;
+}
+
+/* Essential block */
+.essential-block{
+      margin:10px 0 0 0 ;
+}
+
+.contact-info {
+    border-top:solid #dadada 1px;
+}
+
+.contact-info,
+.resources {
+    padding:20px 10px 10px 10px;
+    margin-top: 10px;
+}
+
+.fa-twitter,
+.a-facebook,
+.fa-commenting,
+.fa-desktop,
+.fa-envelope,
+.fa-user,
+.fa-phone,
+.fa-home {
+    font-size: 20px;
+}
+
+.icon-block {
+    width: 8%;
+    display: flex;
+    justify-content: center;
+}
+
+.line {
+    display: flex;
+    color: #333333;
+}
+.address-link{
+    color:#61bdb9;
+}
+.address-link:hover{
+    text-decoration: none;
+    color: #f7af49;
+}
+.address-link:focus{
+    color:#61bdb9;
+    text-decoration: none;
+}
+
+.address-line {
+    margin: 0 0 5px 0;
+    font-weight: 600;
+}
+
+/* Map & Ressources */
+.map {
+    height:400px;
+    margin-top: 20px;
+}
+
+.print-line,
+.download-line {
+    border-top: solid 1px #dadada;
+    margin-top: 5px;
+    padding-top: 10px;
+}
+
+.print p,
+.download p {
+    font-weight: 600;
+}
+
+.print-line p,
+.download-line p {
+    margin-left: 10px;
+}
+
+.print-line i,
+.download-line i {
+    color: #61bdb9;
+    font-size: 20px;
+}
+
+.download:hover,
+.download-line p:hover,
+.print:hover,
+.print-line p:hover {
+    text-decoration: none;
+    color: #61bdb9;
+}
+
+.print:focus,
+.download:focus{
+    color: #61bdb9;
+    text-decoration: none;
+}
+
+.fa-print,
+.fa-download {
+    padding: 3px 0 10px 5px;
+ }
+
+/* Search return button */
+.return{
+    display: inline;
+    border-radius: 50px;
+    padding:20px;
+    border:2px solid #61bdb9;
+    color: #61bdb9;
+    margin: 0 auto 0 auto;
+}
+
+.return:hover{
+    text-decoration: none;
+    color: #f7af49;
+    box-shadow: 0 0 5px 1px #cfcfcf;
+    border:2px solid  #f7af49;
+}
+
+.btn-return-link:hover{
+    text-decoration: none;
+}
+
+.btn-return{
+    margin: 50px 0;
+}
+/*media queries*/
+@media screen and (max-width: 768px) {
+    .head-img {
+        display: none;
+    }
+    .icon-block{
+        width: 6%;
+        padding-left:20px;
+    }
+    .address-line{
+        padding-left:30px;
+    }
+    .head-title{
+        align-items: flex-start;
+    }
+    .img-block{
+        padding-right: 0;
+    }
+
+@media screen and (max-width: 360px) {
+    .map {
+        height:300px;
+    }
+}
+}
+

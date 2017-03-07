@@ -1,0 +1,31 @@
+HandissimoBundle\Entity\StructuresTypes:
+    type: entity
+    table: structures_types
+    repositoryClass: HandissimoBundle\Repository\StructuresTypesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        structurestype:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: structurestype
+        logoMdph:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: logo_mdph
+    oneToMany:
+        organizationtype:
+            targetEntity: Organizations
+            mappedBy: structuretype
+
+    lifecycleCallbacks: {  }
